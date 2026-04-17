@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -26,8 +27,8 @@ export default function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 animate-fade-up delay-300">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary-glow h-14 px-7 text-base font-medium">
-              Analisar um trabalho <ArrowRight className="ml-1 h-4 w-4" />
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary-glow h-14 px-7 text-base font-medium">
+              <Link to="/login">Analisar um trabalho <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
             <Button size="lg" variant="outline" className="h-14 px-7 text-base font-medium border-2">
               <FileText className="mr-2 h-4 w-4" /> Ver demonstração
