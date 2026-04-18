@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import EnrollSchool from "./pages/EnrollSchool.tsx";
+import ContactTeam from "./pages/ContactTeam.tsx";
 
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
@@ -30,6 +32,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/inscrever" element={<EnrollSchool />} />
+            <Route path="/contato" element={<ContactTeam />} />
             
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardLayout />}>

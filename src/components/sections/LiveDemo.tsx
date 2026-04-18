@@ -33,7 +33,7 @@ export default function LiveDemo() {
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
             Esta é uma demonstração interativa com um texto de exemplo. Em produção,
-            Lumiar aceita upload de PDF, DOCX e Google Docs.
+            Aletheia aceita upload de PDF, DOCX e Google Docs.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export default function LiveDemo() {
               <h3 className="font-display text-2xl mb-2">Envie um trabalho</h3>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                 Arraste um arquivo aqui ou clique para colar um texto de demonstração
-                e ver Lumiar em ação.
+                e ver Aletheia em ação.
               </p>
 
               <div className="flex flex-col gap-2 mb-6">

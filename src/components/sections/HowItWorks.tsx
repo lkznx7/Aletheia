@@ -5,7 +5,7 @@ const steps = [
     n: "01",
     icon: Upload,
     title: "Receba o trabalho",
-    body: "PDF, DOCX, link do Google Docs ou texto colado. Lumiar se integra ao fluxo que o professor já tem.",
+    body: "PDF, DOCX, link do Google Docs ou texto colado. Aletheia se integra ao fluxo que o professor já tem.",
   },
   {
     n: "02",

@@ -4,7 +4,7 @@ const items = [
   {
     icon: Heart,
     title: "Apoio, não punição",
-    body: "Lumiar nunca diz 'é IA' ou 'não é IA'. Mostra evidências e devolve ao professor a decisão pedagógica.",
+    body: "Aletheia nunca diz 'é IA' ou 'não é IA'. Mostra evidências e devolve ao professor a decisão pedagógica.",
   },
   {
     icon: Plug,

@@ -21,7 +21,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed text-pretty animate-fade-up delay-200">
-            Lumiar é uma ferramenta pedagógica que abre a "caixa-preta" da redação digital.
+            Aletheia é uma ferramenta pedagógica que abre a "caixa-preta" da redação digital.
             Mostra evidências do processo, valida fontes e devolve ao docente a leitura crítica
             da produção do aluno — sem julgar, sem caçar bruxas.
           </p>
@@ -39,7 +39,7 @@ export default function Hero() {
             {[
               ["~7 min", "para análise completa"],
               ["3 camadas", "evidências, não vereditos"],
-              ["PDF · DOCX", "Google Docs · texto colado"],
+              ["PDF · DOCX · PPTX", "Google Docs · texto colado · Power Point"],
               ["WCAG AA+", "acessibilidade nativa"],
             ].map(([n, l]) => (
               <div key={l} className="border-l-2 border-accent pl-4">

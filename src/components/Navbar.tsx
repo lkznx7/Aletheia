@@ -10,6 +10,8 @@ const links = [
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#analise", label: "Análise ao vivo" },
   { href: "#diferenciais", label: "Diferenciais" },
+  { href: "/inscrever", label: "Inscrever escola" },
+  { href: "/contato", label: "Falar com time" },
 ];
 
 export default function Navbar() {

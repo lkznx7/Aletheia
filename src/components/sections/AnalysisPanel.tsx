@@ -124,7 +124,7 @@ function Evidencias({ text }: { text: string }) {
     <div className="space-y-4">
       <p className="text-sm text-muted-foreground">
         Cada bloco abaixo foi analisado individualmente. Hover ou foque para ler a justificativa.
-        <strong className="text-foreground"> Lumiar não decide</strong> — apresenta evidências.
+        <strong className="text-foreground"> Aletheia não decide</strong> — apresenta evidências.
       </p>
       {paras.map((p, i) => {
         const seg = segments[i] ?? segments[0];

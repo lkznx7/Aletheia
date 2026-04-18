@@ -9,7 +9,7 @@ export default function Overview() {
     <div className="space-y-8 animate-fade-in">
       <div>
         <h1 className="text-3xl font-display font-bold tracking-tight text-primary">Visão Geral</h1>
-        <p className="text-muted-foreground mt-1">Bem-vindo ao seu painel Lumiar.</p>
+        <p className="text-muted-foreground mt-1">Bem-vindo ao seu painel Aletheia.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
