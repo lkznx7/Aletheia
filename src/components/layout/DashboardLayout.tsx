@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Users, GraduationCap, LogOut, FileSearch, Menu, X } from "lucide-react";
+import { LayoutDashboard, Users, GraduationCap, LogOut, FileSearch, Menu, X, Search, FileCode } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 
@@ -14,7 +14,9 @@ export default function DashboardLayout() {
   const navItems = [
     { href: "/dashboard", label: "Visão Geral", icon: LayoutDashboard },
     { href: "/dashboard/turmas", label: "Minhas Turmas", icon: GraduationCap },
-    { href: "/dashboard/alunos", label: "Meus Alunos", icon: Users },
+    { href: "/dashboard/tarefas", label: "Tarefas", icon: FileCode },
+    { href: "/dashboard/alunos", label: "Submissions", icon: Users },
+    { href: "/dashboard/analisar", label: "Analisar Texto", icon: Search },
   ];
 
   return (

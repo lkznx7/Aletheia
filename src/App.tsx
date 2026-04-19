@@ -9,8 +9,10 @@ import Register from "./pages/Register.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import EnrollSchool from "./pages/EnrollSchool.tsx";
 import ContactTeam from "./pages/ContactTeam.tsx";
+import AuthCallback from "./pages/AuthCallback.tsx";
 
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { AccessibilityProvider } from "./contexts/AccessibilityContext.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import DashboardLayout from "./components/layout/DashboardLayout.tsx";
 import Overview from "./pages/dashboard/Overview.tsx";
@@ -18,6 +20,8 @@ import Classes from "./pages/dashboard/Classes.tsx";
 import Students from "./pages/dashboard/Students.tsx";
 import ClassReport from "./pages/dashboard/ClassReport.tsx";
 import StudentDashboard from "./pages/dashboard/StudentDashboard.tsx";
+import Upload from "./pages/dashboard/Upload.tsx";
+import Assignments from "./pages/dashboard/Assignments.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AccessibilityProvider>
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -34,6 +39,8 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/inscrever" element={<EnrollSchool />} />
             <Route path="/contato" element={<ContactTeam />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/auth/google/callback" element={<AuthCallback />} />
             
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardLayout />}>
@@ -42,6 +49,8 @@ const App = () => (
                 <Route path="turmas/:id" element={<ClassReport />} />
                 <Route path="alunos" element={<Students />} />
                 <Route path="alunos/:id" element={<StudentDashboard />} />
+                <Route path="analisar" element={<Upload />} />
+                <Route path="tarefas" element={<Assignments />} />
               </Route>
             </Route>
 
@@ -49,6 +58,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
+        </AccessibilityProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

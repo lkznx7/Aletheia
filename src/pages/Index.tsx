@@ -1,4 +1,3 @@
-import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import AccessibilityBar from "@/components/AccessibilityBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
@@ -11,21 +10,19 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <AccessibilityProvider>
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <main id="main">
-          <Hero />
-          <Problem />
-          <HowItWorks />
-          <LiveDemo />
-          <Differentials />
-          <CTA />
-        </main>
-        <Footer />
-        <AccessibilityBar />
-      </div>
-    </AccessibilityProvider>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main id="main">
+        <Hero />
+        <Problem />
+        <HowItWorks />
+        <LiveDemo />
+        <Differentials />
+        <CTA />
+      </main>
+      <Footer />
+      <AccessibilityBar />
+    </div>
   );
 };
 

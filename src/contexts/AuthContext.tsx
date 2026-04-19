@@ -1,15 +1,18 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { toast } from "sonner";
+import api from "@/lib/api";
 
 interface User {
+  id: string;
   name: string;
   email: string;
-  token: string;
+  role?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   login: (email: string, password: string) => Promise<boolean>;
   register: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
@@ -19,76 +22,73 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Injetar usuário de teste se não houver usuários salvos
-    const usersStr = localStorage.getItem("fluid_users");
-    if (!usersStr) {
-      localStorage.setItem(
-        "fluid_users",
-        JSON.stringify([{ name: "Professor Teste", email: "test@test.com", password: "password123" }])
-      );
-    }
-
-    // Tentar carregar a sessão via mock JWT token
-    const token = localStorage.getItem("fluid_token");
-    if (token) {
+    const token = localStorage.getItem("accessToken");
+    const storedUser = localStorage.getItem("user");
+    if (token && storedUser) {
       try {
-        const payload = JSON.parse(atob(token));
-        setUser({ name: payload.name, email: payload.email, token });
-      } catch (e) {
-        localStorage.removeItem("fluid_token");
+        setUser(JSON.parse(storedUser));
+      } catch {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("user");
       }
     }
+    setIsLoading(false);
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    const users = JSON.parse(localStorage.getItem("fluid_users") || "[]");
-    const foundUser = users.find((u: any) => u.email === email && u.password === password);
-
-    if (foundUser) {
-      // Criar payload e simular token JWT (Base64 encoded)
-      const fakePayload = { name: foundUser.name, email: foundUser.email, role: "teacher" };
-      const token = btoa(JSON.stringify(fakePayload));
-      localStorage.setItem("fluid_token", token);
-      setUser({ name: foundUser.name, email: foundUser.email, token });
-      toast.success(`Bem-vindo(a) de volta, ${foundUser.name}!`);
+    setIsLoading(true);
+    try {
+      const result = await api.post("/auth/login", { email, password });
+      
+      localStorage.setItem("accessToken", result.accessToken);
+      localStorage.setItem("refreshToken", result.refreshToken);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      
+      setUser(result.user);
+      toast.success(`Bem-vindo(a) de volta, ${result.user.name}!`);
       return true;
-    } else {
-      toast.error("Credenciais inválidas. Verifique e tente novamente.");
+    } catch (error: any) {
+      toast.error(error.message || "Credenciais inválidas. Verifique e tente novamente.");
       return false;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
-    const users = JSON.parse(localStorage.getItem("fluid_users") || "[]");
-    
-    if (users.find((u: any) => u.email === email)) {
-      toast.error("Este e-mail já está em uso.");
+    setIsLoading(true);
+    try {
+      const result = await api.post("/auth/register", { name, email, password });
+      
+      localStorage.setItem("accessToken", result.accessToken);
+      localStorage.setItem("refreshToken", result.refreshToken);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      
+      setUser(result.user);
+      toast.success("Conta criada com sucesso!");
+      return true;
+    } catch (error: any) {
+      toast.error(error.message || "Erro ao criar conta. Tente novamente.");
       return false;
+    } finally {
+      setIsLoading(false);
     }
-
-    // Inserir novo usuário no array
-    users.push({ name, email, password });
-    localStorage.setItem("fluid_users", JSON.stringify(users));
-
-    // Fazer login automático
-    const fakePayload = { name, email, role: "teacher" };
-    const token = btoa(JSON.stringify(fakePayload));
-    localStorage.setItem("fluid_token", token);
-    setUser({ name, email, token });
-    toast.success("Conta criada com sucesso!");
-    return true;
   };
 
   const logout = () => {
-    localStorage.removeItem("fluid_token");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
     setUser(null);
     toast.success("Você desconectou da sua conta.");
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
