@@ -50,21 +50,19 @@ export default function AnalysisPanel({ text }: Props) {
     { id: "evidencias", label: "Evidências", icon: FileSearch },
     { id: "fontes", label: "Fontes", icon: Link2 },
     { id: "timeline", label: "Timeline", icon: History },
-    { id: "conversa", label: "Conversa pedagógica", icon: MessageCircleQuestion },
+    { id: "conversa", label: "Conversa", icon: MessageCircleQuestion },
   ];
 
   return (
     <div className="rounded-2xl border border-border bg-card shadow-elev overflow-hidden animate-fade-up">
-      {/* header */}
-      <div className="flex items-center justify-between p-5 border-b border-border bg-muted/30">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 md:p-5 border-b border-border bg-muted/30">
         <div>
           <p className="text-xs text-muted-foreground">Aluno · Maria H. — Turma 3B</p>
-          <h3 className="font-display text-xl">Revolução Industrial — análise pedagógica</h3>
+          <h3 className="font-display text-lg md:text-xl">Revolução Industrial — análise pedagógica</h3>
         </div>
         <ScoreBadge />
       </div>
 
-      {/* tabs */}
       <div role="tablist" className="flex border-b border-border overflow-x-auto">
         {tabs.map((t) => (
           <button
@@ -73,19 +71,19 @@ export default function AnalysisPanel({ text }: Props) {
             aria-selected={tab === t.id}
             onClick={() => setTab(t.id)}
             className={cn(
-              "flex items-center gap-2 px-5 py-3.5 text-sm font-medium border-b-2 whitespace-nowrap transition-colors",
+              "flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors",
               tab === t.id
                 ? "border-accent text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             )}
           >
-            <t.icon className="h-4 w-4" />
-            {t.label}
+            <t.icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            <span className="hidden sm:inline">{t.label}</span>
           </button>
         ))}
       </div>
 
-      <div className="p-6 md:p-8">
+      <div className="p-4 md:p-6 lg:p-8">
         {tab === "evidencias" && <Evidencias text={text} />}
         {tab === "fontes" && <Fontes />}
         {tab === "timeline" && <Timeline />}
@@ -121,8 +119,8 @@ function Evidencias({ text }: { text: string }) {
   } as const;
 
   return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
+    <div className="space-y-3 md:space-y-4">
+      <p className="text-xs md:text-sm text-muted-foreground">
         Cada bloco abaixo foi analisado individualmente. Hover ou foque para ler a justificativa.
         <strong className="text-foreground"> Aletheia não decide</strong> — apresenta evidências.
       </p>
@@ -131,12 +129,12 @@ function Evidencias({ text }: { text: string }) {
         const cls = colors[seg.type as keyof typeof colors];
         const lab = labels[seg.type as keyof typeof labels];
         return (
-          <div key={i} className={cn("border-l-4 rounded-r-lg p-4 transition-all", cls)}>
-            <div className={cn("text-xs font-semibold uppercase tracking-wider mb-2", lab.c)}>
+          <div key={i} className={cn("border-l-4 rounded-r-lg p-3 md:p-4 transition-all", cls)}>
+            <div className={cn("text-xs font-semibold uppercase tracking-wider mb-1.5 md:mb-2", lab.c)}>
               {lab.t}
             </div>
-            <p className="text-sm leading-relaxed mb-3">{p}</p>
-            <p className="text-xs text-muted-foreground italic border-t border-border/60 pt-2">
+            <p className="text-sm leading-relaxed mb-2 md:mb-3">{p}</p>
+            <p className="text-xs text-muted-foreground italic border-t border-border/60 pt-1.5 md:pt-2">
               ↳ {seg.note}
             </p>
           </div>
@@ -158,15 +156,15 @@ function Fontes() {
     fail: "text-destructive",
   } as const;
   return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
+    <div className="space-y-3 md:space-y-4">
+      <p className="text-xs md:text-sm text-muted-foreground">
         Cada citação foi verificada em bases acadêmicas, repositórios abertos e índices de credibilidade.
       </p>
       {sources.map((s) => (
-        <div key={s.label} className={cn("border-l-4 rounded-r-lg p-4 flex gap-4", styles[s.status as keyof typeof styles])}>
-          <s.icon className={cn("h-5 w-5 flex-shrink-0 mt-0.5", iconClr[s.status as keyof typeof iconClr])} />
+        <div key={s.label} className={cn("border-l-4 rounded-r-lg p-3 md:p-4 flex gap-3 md:gap-4", styles[s.status as keyof typeof styles])}>
+          <s.icon className={cn("h-4 w-4 md:h-5 md:w-5 flex-shrink-0 mt-0.5", iconClr[s.status as keyof typeof iconClr])} />
           <div className="flex-1">
-            <div className="font-medium text-sm mb-1">{s.label}</div>
+            <div className="font-medium text-sm mb-0.5 md:mb-1">{s.label}</div>
             <p className="text-xs text-muted-foreground leading-relaxed">{s.note}</p>
           </div>
         </div>
@@ -178,21 +176,21 @@ function Fontes() {
 function Timeline() {
   return (
     <div className="relative">
-      <div aria-hidden className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
-      <ol className="space-y-5">
+      <div aria-hidden className="absolute left-[5px] md:left-[7px] top-2 bottom-2 w-px bg-border" />
+      <ol className="space-y-4 md:space-y-5">
         {timeline.map((t, i) => (
-          <li key={i} className="relative pl-8">
+          <li key={i} className="relative pl-6 md:pl-8">
             <span
               className={cn(
-                "absolute left-0 top-1.5 h-4 w-4 rounded-full border-2",
+                "absolute left-0 top-1 md:top-1.5 h-3 w-3 md:h-4 md:w-4 rounded-full border-2",
                 t.flag ? "bg-warning border-warning" : "bg-card border-border"
               )}
             />
-            <div className="flex flex-wrap items-baseline gap-2 mb-1">
+            <div className="flex flex-wrap items-baseline gap-1.5 md:gap-2 mb-0.5 md:mb-1">
               <span className="font-mono text-xs text-muted-foreground">{t.t}</span>
               <span className="font-medium text-sm">{t.e}</span>
               {t.flag && (
-                <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-warning/20 text-warning-foreground">
+                <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 md:px-2 py-0.5 rounded bg-warning/20 text-warning-foreground">
                   Sinalizado
                 </span>
               )}
@@ -213,21 +211,21 @@ function Conversa() {
     "Se eu tirasse o segundo parágrafo, sua argumentação ainda se sustentaria? Como?",
   ];
   return (
-    <div className="space-y-5">
-      <div className="p-4 rounded-xl bg-accent-soft border border-accent/30">
+    <div className="space-y-4 md:space-y-5">
+      <div className="p-3 md:p-4 rounded-xl bg-accent-soft border border-accent/30">
         <p className="text-sm leading-relaxed">
-          <strong>Tom sugerido:</strong> curioso, não acusatório. O objetivo é desenvolver
+          <strong>Tom sugerido:</strong> curioso, não accusatório. O objetivo é desenvolver
           senso crítico, não obter confissão. Comece elogiando o que estiver bom.
         </p>
       </div>
-      <ol className="space-y-3">
+      <ol className="space-y-2 md:space-y-3">
         {perguntas.map((p, i) => (
-          <li key={i} className="flex gap-4 p-4 rounded-lg border border-border bg-background hover:border-accent transition-colors">
-            <span className="font-display text-2xl text-accent">{(i + 1).toString().padStart(2, "0")}</span>
-            <p className="text-sm leading-relaxed pt-1">{p}</p>
+          <li key={i} className="flex gap-3 md:gap-4 p-3 md:p-4 rounded-lg border border-border bg-background hover:border-accent transition-colors">
+            <span className="font-display text-lg md:text-2xl text-accent">{(i + 1).toString().padStart(2, "0")}</span>
+            <p className="text-sm leading-relaxed pt-0.5 md:pt-1">{p}</p>
           </li>
         ))}
       </ol>
     </div>
-  );
+);
 }

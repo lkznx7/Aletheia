@@ -25,29 +25,29 @@ const items = [
 
 export default function Differentials() {
   return (
-    <section id="diferenciais" className="py-24 md:py-32 bg-background">
+    <section id="diferenciais" className="py-16 md:py-24 lg:py-32 bg-background">
       <div className="container">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-10 md:mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-accent font-semibold mb-4">
             Diferenciais
           </p>
-          <h2 className="font-display text-4xl md:text-6xl leading-[1.05] text-balance">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
             Pedagógico antes de tecnológico.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
           {items.map((it) => (
             <div
               key={it.title}
-              className="group p-8 rounded-2xl border border-border bg-card hover:border-accent transition-all hover:shadow-elev flex gap-5"
+              className="group p-6 md:p-8 rounded-2xl border border-border bg-card hover:border-accent transition-all hover:shadow-elev flex gap-4 md:gap-5"
             >
-              <div className="h-12 w-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                <it.icon className="h-5 w-5" strokeWidth={1.8} />
+              <div className="h-10 w-10 md:h-12 md:w-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                <it.icon className="h-4 w-4 md:h-5 md:w-5" strokeWidth={1.8} />
               </div>
               <div>
-                <h3 className="font-display text-2xl leading-tight mb-2">{it.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{it.body}</p>
+                <h3 className="font-display text-lg md:text-2xl leading-tight mb-2">{it.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{it.body}</p>
               </div>
             </div>
           ))}

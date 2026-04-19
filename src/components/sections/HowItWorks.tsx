@@ -29,29 +29,29 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" className="py-24 md:py-32 bg-dark text-primary-foreground relative overflow-hidden">
+    <section id="como-funciona" className="py-16 md:py-24 lg:py-32 bg-dark text-primary-foreground relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 grain opacity-40" />
       <div className="container relative">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-10 md:mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-accent font-semibold mb-4">
             Como funciona
           </p>
-          <h2 className="font-display text-4xl md:text-6xl leading-[1.05] text-balance">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
             Quatro camadas de evidência. <em className="text-accent not-italic">Nenhum veredito.</em>
           </h2>
         </div>
 
-        <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {steps.map((s) => (
             <li
               key={s.n}
-              className="relative p-7 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 transition-colors group"
+              className="relative p-5 md:p-7 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 transition-colors group"
             >
-              <span className="font-display text-5xl text-accent/40 group-hover:text-accent transition-colors">
+              <span className="font-display text-4xl md:text-5xl text-accent/40 group-hover:text-accent transition-colors">
                 {s.n}
               </span>
-              <s.icon className="h-7 w-7 text-accent mt-4 mb-4" strokeWidth={1.8} />
-              <h3 className="font-display text-xl mb-2 leading-snug">{s.title}</h3>
+              <s.icon className="h-6 w-6 md:h-7 md:w-7 text-accent mt-3 md:mt-4 mb-3 md:mb-4" strokeWidth={1.8} />
+              <h3 className="font-display text-lg md:text-xl mb-2 leading-snug">{s.title}</h3>
               <p className="text-sm text-primary-foreground/70 leading-relaxed">{s.body}</p>
             </li>
           ))}

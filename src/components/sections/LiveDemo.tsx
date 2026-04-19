@@ -22,35 +22,34 @@ export default function LiveDemo() {
   };
 
   return (
-    <section id="analise" className="py-24 md:py-32 bg-background">
+    <section id="analise" className="py-16 md:py-24 lg:py-32 bg-background">
       <div className="container">
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-8 md:mb-12">
           <p className="text-xs uppercase tracking-[0.2em] text-accent font-semibold mb-4">
             Análise ao vivo
           </p>
-          <h2 className="font-display text-4xl md:text-6xl leading-[1.05] text-balance">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
             Cole um trabalho. Veja as evidências.
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-4 md:mt-6 text-base md:text-lg text-muted-foreground">
             Esta é uma demonstração interativa com um texto de exemplo. Em produção,
             Aletheia aceita upload de PDF, DOCX e Google Docs.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-6">
-          {/* Coluna esquerda — upload */}
+        <div className="grid lg:grid-cols-5 gap-4 md:gap-6">
           <div className="lg:col-span-2">
-            <div className="sticky top-24 rounded-2xl border-2 border-dashed border-border bg-card p-8 shadow-soft">
-              <div className="h-14 w-14 rounded-xl bg-accent flex items-center justify-center mb-5">
-                <Upload className="h-6 w-6 text-accent-foreground" />
+            <div className="rounded-2xl border-2 border-dashed border-border bg-card p-6 md:p-8 shadow-soft">
+              <div className="h-12 w-12 md:h-14 md:w-14 rounded-xl bg-accent flex items-center justify-center mb-4 md:mb-5">
+                <Upload className="h-5 w-5 md:h-6 md:w-6 text-accent-foreground" />
               </div>
-              <h3 className="font-display text-2xl mb-2">Envie um trabalho</h3>
-              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              <h3 className="font-display text-xl md:text-2xl mb-2">Envie um trabalho</h3>
+              <p className="text-sm text-muted-foreground mb-5 md:mb-6 leading-relaxed">
                 Arraste um arquivo aqui ou clique para colar um texto de demonstração
                 e ver Aletheia em ação.
               </p>
 
-              <div className="flex flex-col gap-2 mb-6">
+              <div className="flex flex-col gap-2 mb-5 md:mb-6">
                 {["redacao_aluno_3B.pdf", "trabalho_historia.docx", "ensaio_filosofia.gdocs"].map((f) => (
                   <div key={f} className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-muted/50 text-sm">
                     <FileText className="h-4 w-4 text-muted-foreground" />
@@ -78,7 +77,6 @@ export default function LiveDemo() {
             </div>
           </div>
 
-          {/* Coluna direita — análise */}
           <div className="lg:col-span-3">
             {stage === "idle" && <EmptyState />}
             {stage === "loading" && <LoadingState />}
@@ -92,12 +90,12 @@ export default function LiveDemo() {
 
 function EmptyState() {
   return (
-    <div className="rounded-2xl border border-border bg-card p-12 text-center min-h-[500px] flex flex-col items-center justify-center">
-      <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center mb-5">
-        <FileText className="h-7 w-7 text-muted-foreground" />
+    <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center min-h-[300px] md:min-h-[500px] flex flex-col items-center justify-center">
+      <div className="h-12 w-12 md:h-16 md:w-16 rounded-full bg-muted flex items-center justify-center mb-4 md:mb-5">
+        <FileText className="h-6 w-6 md:h-7 md:w-7 text-muted-foreground" />
       </div>
-      <h3 className="font-display text-2xl mb-2">Aguardando trabalho</h3>
-      <p className="text-muted-foreground max-w-sm">
+      <h3 className="font-display text-xl md:text-2xl mb-2">Aguardando trabalho</h3>
+      <p className="text-sm md:text-base text-muted-foreground max-w-sm">
         Carregue o exemplo ao lado para ver evidências de IA, validação de fontes
         e a timeline de evolução do documento.
       </p>
@@ -107,9 +105,9 @@ function EmptyState() {
 
 function LoadingState() {
   return (
-    <div className="relative rounded-2xl border border-border bg-card p-12 min-h-[500px] overflow-hidden">
+    <div className="relative rounded-2xl border border-border bg-card p-8 md:p-12 min-h-[300px] md:min-h-[500px] overflow-hidden">
       <div aria-hidden className="absolute inset-x-0 h-1 bg-accent/40 animate-scan" />
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {[
           "Analisando padrões linguísticos…",
           "Comparando ritmo e vocabulário…",
